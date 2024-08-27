@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- aframeの導入 -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src=".\main.js"></script>
+
+    <title>癒し空間</title>
+  </head>
+
+  <body>
+    <a-scene loading-screen="dotsColor: gray; backgroundColor: lightgray">
+      <a-sky color="#ECECEC"></a-sky>
+      <a-entity environment="preset: default;"></a-entity>
+      <a-plane position="0 0.05 -5" rotation="-90 0 0" width="6" height="6" color="#7BC8A4"></a-plane>
+      
+
+      <!-- 3Dモデル（gltfファイル） & 動画(mp4ファイル)-->
+      <a-assets>
+        <video id="cat_video" src="./assets/cat_video.mp4" loop="true"></video>
+        <video id="dog_video" src="./assets/dog_video.mp4" loop="true"></video>
+        <video id="bird_video" src="./assets/bird_video.mp4" loop="true"></video>
+
+        <audio id="audio" src="./assets/park_sound.mp3" preload="auto"></audio>
+
+        <a-asset-item id="mikan_man" src=".\assets\mikan_man.glb" ></a-asset-item>
+        <a-asset-item id="cat_model" src=".\assets\cat_model.glb" ></a-asset-item>
+        <a-asset-item id="dog_model" src=".\assets\dog_model.glb" ></a-asset-item>
+        <a-asset-item id="bird_model" src=".\assets\bird_model.glb" ></a-asset-item>
+        
+      </a-assets>
+
+      <a-sound id="park_sound" src="#audio" position="0 1.2 -3" autoplay="false" loop="true"></a-sound>
+      <a-video src="#dog_video" position="0 2.5 -3" rotation="0 0 0" width="4" height="2.25"></a-video>
+      <a-video src="#cat_video" position="-3 2.5 -2" rotation="0 50 0" width="4" height="2.25"></a-video>
+      <a-video src="#bird_video" position="3 2.5 -2" rotation="0 -50 0" width="4" height="2.25"></a-video>
+
+      <!--オーディオ開始用オブジェクト-->
+      <a-cylinder audio_listner position="0 0.2 -2" radius="0.5" height="0.5" color="#FFC65D" material="opacity: 1" shadow></a-cylinder>
+
+      <!--猫3Dモデル-->
+      <a-cylinder cat_listner position="-1.5 0 -4" radius="0.5" height="0.5" color="#FFC65D" material="opacity: 0" shadow></a-cylinder>
+      <a-entity position="-1.5 0 -4" gltf-model="#cat_model"  rotation="0 -70 0"  scale="0.3 0.3 0.3"></a-entity>
+
+      <!--犬3Dモデル-->
+      <a-cylinder dog_listner position="0 0 -4" radius="0.5" height="0.5" color="#FFC65D" material="opacity: 0" shadow></a-cylinder>
+      <a-entity position="0 0.5 -4" gltf-model="#dog_model"  rotation="0 0 0"  scale="0.5 0.5 0.5"></a-entity>
+
+      <!--鳥3Dモデル-->
+      <a-cylinder bird_listner position="1.5 0 -4" radius="0.5" height="0.8" color="#FFC65D" material="opacity: 0" shadow></a-cylinder>
+      <a-entity position="1.5 0 -4" gltf-model="#bird_model"  rotation="0 0 0"  scale="0.5 0.5 0.5"></a-entity>
+
+
+      <!-- みかん男 -->
+      <a-entity gltf-model="#mikan_man" position="1 0 0" rotation="0 20 0"  scale="1 1 1"></a-entity>
+        
+      <!-- カメラ設置 -->
+      <a-camera id="my_camera">
+          <a-cursor></a-cursor>
+      </a-camera>
+    </a-scene>
+  </body>
+</html>
